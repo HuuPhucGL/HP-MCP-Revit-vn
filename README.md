@@ -18,7 +18,7 @@ Bản này do **Nguyễn Hữu Phúc** viết hoàn toàn mới. Giấy phép MI
 
 MCP đăng ký tên **`hp-revit`** (khác tên `revit` của bộ khác nên có thể cài song song).
 
-Các công cụ Claude có:
+Các công cụ Claude có (16 công cụ):
 
 | Công cụ | Việc làm | Ghi? |
 |---|---|---|
@@ -29,6 +29,9 @@ Các công cụ Claude có:
 | `revit_get_elements` | Liệt kê phần tử của 1 nhóm (OST_Walls, OST_Doors...) | Không |
 | `revit_get_element_params` | Đọc toàn bộ tham số của 1 phần tử | Không |
 | `revit_screenshot` | Chụp ảnh view đang mở | Không |
+| `revit_list_views` / `revit_list_sheets` | Liệt kê view (kèm tỷ lệ) và sheet | Không |
+| `revit_export_pdf` | Xuất sheet ra PDF A3 (gộp 1 file hoặc tách), **không ghi đè**; Revit 2022 trở lên | Ghi file PDF |
+| `revit_create_sheet` / `revit_place_view` / `revit_set_view_scale` | Tạo sheet KT-xx, đặt view lên sheet, đặt tỷ lệ 1/50 | Có |
 | `revit_create_level` | Tạo Level | Có |
 | `revit_create_wall` | Tạo 1 đoạn tường theo 2 điểm (mm) | Có |
 | `revit_set_parameter` | Sửa 1 tham số | Có |

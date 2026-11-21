@@ -16,6 +16,7 @@
     <DefineConstants>$(DefineConstants);REVIT$(RevitYear)</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="$(RevitYear) &gt;= 2018"><DefineConstants>$(DefineConstants);REVIT2018_OR_GREATER</DefineConstants></PropertyGroup>
+  <PropertyGroup Condition="$(RevitYear) &gt;= 2022"><DefineConstants>$(DefineConstants);REVIT2022_OR_GREATER</DefineConstants></PropertyGroup>
   <PropertyGroup Condition="$(RevitYear) &gt;= 2024"><DefineConstants>$(DefineConstants);REVIT2024_OR_GREATER</DefineConstants></PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitYear).*" ExcludeAssets="runtime" />

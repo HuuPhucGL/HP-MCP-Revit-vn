@@ -106,6 +106,46 @@ def revit_set_parameter(element_id: int, name: str, value: str, unit: str = "") 
 
 
 @mcp.tool()
+def revit_list_views() -> list:
+    """Liet ke view (khong gom sheet va template): id, ten, loai, ty le (vd 50 = 1/50)."""
+    return _call("list_views", timeout=30)
+
+
+@mcp.tool()
+def revit_list_sheets() -> list:
+    """Liet ke sheet: so hieu, ten, so view da dat."""
+    return _call("list_sheets", timeout=30)
+
+
+@mcp.tool()
+def revit_create_sheet(number: str, name: str, titleblock: str | None = None) -> dict:
+    """Tao sheet (vd number='KT-01', name='MAT BANG TANG 1'). titleblock: ten khung ten
+    ('Ho ten family : Ten type' hoac chi ten type); bo trong = sheet khong khung ten."""
+    return _call("create_sheet", {"number": number, "name": name, "titleblock": titleblock})
+
+
+@mcp.tool()
+def revit_place_view(sheet_number: str, view_name: str, x_mm: float = 210, y_mm: float = 150) -> dict:
+    """Dat view len sheet tai toa do (mm) tinh tu goc duoi-trai sheet. Mac dinh gan giua A3 ngang."""
+    return _call("place_view", {"sheet_number": sheet_number, "view_name": view_name, "x_mm": x_mm, "y_mm": y_mm})
+
+
+@mcp.tool()
+def revit_set_view_scale(view_name: str, scale: int = 50) -> dict:
+    """Dat ty le view (50 = 1/50, 100 = 1/100)."""
+    return _call("set_view_scale", {"view_name": view_name, "scale": scale})
+
+
+@mcp.tool()
+def revit_export_pdf(folder: str, file_name: str, sheet_numbers: list[str] | None = None,
+                     combine: bool = True) -> dict:
+    """Xuat sheet ra PDF kho A3 (Revit 2022 tro len). sheet_numbers bo trong = tat ca sheet.
+    combine=True gop 1 file. Khong ghi de file co san. folder: thu muc dich (tao neu chua co)."""
+    return _call("export_pdf", {"folder": folder, "file_name": file_name,
+                                "sheet_numbers": sheet_numbers or [], "combine": combine}, timeout=300)
+
+
+@mcp.tool()
 def revit_screenshot(width: int = 1600) -> Image:
     """Chup anh view dang mo trong Revit (PNG) de kiem tra."""
     res = _call("screenshot", {"width": width}, timeout=90)

@@ -12,7 +12,7 @@ using Autodesk.Revit.UI;
 
 namespace HPRevitMcp
 {
-    internal static class Commands
+    internal static partial class Commands
     {
         private const double FtToMm = 304.8;
 
@@ -101,6 +101,12 @@ namespace HPRevitMcp
                 case "create_wall": return CreateWall(app, p);
                 case "set_parameter": return SetParameter(app, p);
                 case "screenshot": return Screenshot(app, p);
+                case "list_views": return ListViews(app);
+                case "list_sheets": return ListSheets(app);
+                case "create_sheet": return CreateSheet(app, p);
+                case "place_view": return PlaceView(app, p);
+                case "set_view_scale": return SetViewScale(app, p);
+                case "export_pdf": return ExportPdf(app, p);
                 default: throw new ArgumentException("Lenh khong ho tro: " + method);
             }
         }
