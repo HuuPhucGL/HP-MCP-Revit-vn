@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Bien dich: dotnet build -c Release -p:RevitYear=2024  (2017..2026) -->
+  <PropertyGroup>
+    <RevitYear Condition="'$(RevitYear)'==''">2024</RevitYear>
+    <TargetFramework Condition="$(RevitYear) &lt; 2025">net48</TargetFramework>
+    <TargetFramework Condition="$(RevitYear) &gt;= 2025">net8.0-windows</TargetFramework>
+    <AssemblyName>HPRevitMcp</AssemblyName>
+    <RootNamespace>HPRevitMcp</RootNamespace>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <PlatformTarget>x64</PlatformTarget>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\dist\addin\$(RevitYear)\</OutputPath>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <DebugType>none</DebugType>
+    <DefineConstants>$(DefineConstants);REVIT$(RevitYear)</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$(RevitYear) &gt;= 2018"><DefineConstants>$(DefineConstants);REVIT2018_OR_GREATER</DefineConstants></PropertyGroup>
+  <PropertyGroup Condition="$(RevitYear) &gt;= 2024"><DefineConstants>$(DefineConstants);REVIT2024_OR_GREATER</DefineConstants></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitYear).*" ExcludeAssets="runtime" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitYear).*" ExcludeAssets="runtime" />
+  </ItemGroup>
+</Project>
